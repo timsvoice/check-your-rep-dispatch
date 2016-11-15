@@ -1,16 +1,23 @@
 'use strict';
+import Mailgun from 'mailgun-js';
 
-module.exports.hello = (event, context, callback) => {
-  const response = {
-    statusCode: 200,
-    body: JSON.stringify({
-      message: 'Go Serverless v1.0! Your function executed successfully!',
-      input: event,
-    }),
-  };
+const MAILGUN_API_KEY = process.env.MAILGUN_API_KEY;
+const domain = process.env.MAILGUN_CHECKYOURREP_DOMAIN;
+const mailgun = Mailgun({apiKey: MAILGUN_API_KEY, domain });
 
-  callback(null, response);
-
-  // Use this code if you don't use the http event with the LAMBDA-PROXY integration
-  // callback(null, { message: 'Go Serverless v1.0! Your function executed successfully!', event });
-};
+module.exports.mailer = {
+  send(data) {
+    return new Promise((resolve, reject) => {
+      const mail = {
+        from: 'postmaster@checkyourrep.org',
+        to: data.user.email,
+        subjec: 'Your Bills',
+        text: data.message,
+        'o:testmode': data.testmode 
+      }
+      mailgun.messages().send(mail)
+        .then((res) => { resolve(res) })
+        .catch((err) => { reject(err) })
+    })
+  }
+}
