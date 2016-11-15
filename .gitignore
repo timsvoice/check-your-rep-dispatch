@@ -43,5 +43,5 @@ jspm_packages
 
 .env
 
-env.js
+config/env.js
 handler.js

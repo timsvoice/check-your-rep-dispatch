@@ -1,6 +1,6 @@
 "use-strict";
 
-import {} from 'dotenv/co`nfig';
+import {} from 'dotenv/config';
 import fs from 'fs';
 
 module.exports.config = () => {
@@ -9,7 +9,7 @@ module.exports.config = () => {
     MAILGUN_API_KEY: "${process.env.MAILGUN_API_KEY}",
     MAILGUN_CHECKYOURREP_DOMAIN: "${process.env.MAILGUN_CHECKYOURREP_DOMAIN}"
   }`
-  fs.writeFile('./env.js', keys, (err) => {
+  fs.writeFile('./config/env.js', keys, (err) => {
     if (err) throw err;
     console.log('saved');
   })

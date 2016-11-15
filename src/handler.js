@@ -1,7 +1,7 @@
 'use strict';
 import Mailgun from 'mailgun-js';
-import { config } from './config/config.js'; config("DEVELOPMENT");
-import { keys } from './env.js';
+import { config } from './config/config.js'; config();
+import { keys } from '../config/env.js';
 
 const MAILGUN_API_KEY = keys.MAILGUN_API_KEY;
 const domain = keys.MAILGUN_CHECKYOURREP_DOMAIN;
