@@ -4,6 +4,7 @@ module.exports = {
     entry: './src/handler.js',
     target: 'node',
     noParse: [/aws-sdk/],
+    externals: [nodeExternals()],
     output: {
         path: '.',
         filename: 'handler.js',

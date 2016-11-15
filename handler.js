@@ -42,24 +42,53 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	module.exports.hello = (event, context, callback) => {
-	  const response = {
-	    statusCode: 200,
-	    body: JSON.stringify({
-	      message: 'Go Serverless v1.0! Your function executed successfully!',
-	      input: event
-	    })
-	  };
+	var _mailgunJs = __webpack_require__(1);
 
-	  callback(null, response);
+	var _mailgunJs2 = _interopRequireDefault(_mailgunJs);
 
-	  // Use this code if you don't use the http event with the LAMBDA-PROXY integration
-	  // callback(null, { message: 'Go Serverless v1.0! Your function executed successfully!', event });
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var MAILGUN_API_KEY = process.env.MAILGUN_API_KEY;
+	var domain = process.env.MAILGUN_CHECKYOURREP_DOMAIN;
+	var mailgun = (0, _mailgunJs2.default)({ apiKey: MAILGUN_API_KEY, domain: domain });
+
+	module.exports.mailer = {
+	  send: function send(data) {
+	    var mail = {
+	      from: 'postmaster@checkyourrep.org',
+	      to: 'timsethvoice@gmail.com',
+	      subjec: 'Your Bills',
+	      text: 'Test mail',
+	      'o:testmode': true
+	    };
+	    if (data) {
+	      var _mail = {
+	        from: 'postmaster@checkyourrep.org',
+	        to: data.user.email,
+	        subjec: 'Your Bills',
+	        text: data.message,
+	        'o:testmode': data.testmode
+	      };
+	    }
+	    return new Promise(function (resolve, reject) {
+	      mailgun.messages().send(mail).then(function (res) {
+	        resolve(res);
+	      }).catch(function (err) {
+	        reject(err);
+	      });
+	    });
+	  }
 	};
+
+/***/ },
+/* 1 */
+/***/ function(module, exports) {
+
+	module.exports = require("mailgun-js");
 
 /***/ }
 /******/ ])));

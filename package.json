@@ -6,7 +6,8 @@
   "scripts": {
     "test": "mocha ./src/test/ --require babel-register",
     "test-dev": "mocha -w ./src/test/ --require babel-register",
-    "start-dev": "babel-node ./src/handler.js"
+    "start-dev": "babel-node ./src/handler.js",
+    "deploy": "webpack && serverless deploy && serverless logs -f mailer -t"
   },
   "repository": {
     "type": "git",
@@ -41,6 +42,7 @@
     "webpack": "^1.13.3"
   },
   "devDependencies": {
+    "serverless-offline": "^3.3.2",
     "webpack-node-externals": "^1.5.4"
   }
 }
