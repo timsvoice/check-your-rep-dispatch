@@ -1,0 +1,41 @@
+{
+  "name": "check-your-rep-dispatch",
+  "version": "1.0.0",
+  "description": "Dispatch for Check Your Rep tracker",
+  "main": "handler.js",
+  "scripts": {
+    "test": "test",
+    "test-dev": "mocha -w ./src/test/ --require babel-register"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com:timsvoice/check-your-rep-dispatch.git"
+  },
+  "keywords": [
+    "node",
+    "serverless",
+    "evented"
+  ],
+  "author": "Timothy Voice",
+  "license": "ISC",
+  "dependencies": {
+    "babel-cli": "^6.9.0",
+    "babel-core": "^6.9.0",
+    "babel-eslint": "^6.0.4",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-transform-runtime": "^6.9.0",
+    "babel-polyfill": "^6.9.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.5.0",
+    "babel-preset-stage-1": "^6.5.0",
+    "babel-register": "^6.9.0",
+    "babel-runtime": "^6.9.0",
+    "body-parser": "^1.15.2",
+    "dotenv": "^2.0.0",
+    "chai": "^3.5.0",
+    "chai-as-promised": "^6.0.0",
+    "mocha": "^3.1.2",
+    "sinon": "^1.17.6",
+    "webpack": "^1.13.3"
+  }
+}
