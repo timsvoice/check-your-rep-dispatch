@@ -37,10 +37,11 @@ jspm_packages
 .node_repl_history
 
 .DS_Store
-
+.serverless
 .serverless/cloudformation-template-update-stack.json
 .serverless/value-stack.zip
 
 .env
 
-src/config/env.js
+env.js
+handler.js

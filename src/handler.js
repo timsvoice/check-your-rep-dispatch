@@ -1,17 +1,16 @@
 'use strict';
 import Mailgun from 'mailgun-js';
-import { config } from './config/config.js';
+import { config } from './config/config.js'; config("DEVELOPMENT");
+import { keys } from './env.js';
 
-const MAILGUN_API_KEY = process.env.MAILGUN_API_KEY;
-const domain = process.env.MAILGUN_CHECKYOURREP_DOMAIN;
+const MAILGUN_API_KEY = keys.MAILGUN_API_KEY;
+const domain = keys.MAILGUN_CHECKYOURREP_DOMAIN;
 const mailgun = Mailgun({apiKey: MAILGUN_API_KEY, domain });
 
-config("DEVELOPMENT");
-
-module.exports.mailer = {
-  send(data) {
+module.exports.mailer = (event, context, callback) => {
+    const data = event.body;
     let mail = {};
-    if (data != undefined) {
+    if (data != null) {
       mail = {
         from: 'postmaster@checkyourrep.org',
         to: data.user.email,
@@ -28,10 +27,9 @@ module.exports.mailer = {
         'o:testmode': true
       }
     }
-    return new Promise((resolve, reject) => {
-      mailgun.messages().send(mail)
-        .then((res) => { resolve(res) })
-        .catch((err) => { reject(err) })
-    })
+    mailgun.messages().send(mail)
+      .then((res) => {
+        callback(null, res)
+      })
+      .catch((err) => { throw err; })
   }
-}

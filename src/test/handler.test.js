@@ -12,6 +12,6 @@ describe('Handler', function() {
       message: 'This is an email test',
       testmode: true,
     };
-    return assert.eventually.deepPropertyVal(mailer.send(data), 'message', 'Queued. Thank you.');
+    return assert.eventually.deepPropertyVal(mailer(data), 'message', 'Queued. Thank you.');
   })
 })
