@@ -4,7 +4,7 @@
   "description": "Dispatch for Check Your Rep tracker",
   "main": "handler.js",
   "scripts": {
-    "test": "test",
+    "test": "mocha ./src/test/ --require babel-register",
     "test-dev": "mocha -w ./src/test/ --require babel-register"
   },
   "repository": {
@@ -37,5 +37,8 @@
     "mocha": "^3.1.2",
     "sinon": "^1.17.6",
     "webpack": "^1.13.3"
+  },
+  "devDependencies": {
+    "webpack-node-externals": "^1.5.4"
   }
 }

@@ -1,12 +1,13 @@
-var nodeExternals = require('webpack-node-externals');
+const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
     entry: './src/handler.js',
     target: 'node',
-    externals: [nodeExternals()],
+    noParse: [/aws-sdk/],
     output: {
         path: '.',
-        filename: 'handler.js'
+        filename: 'handler.js',
+        libraryTarget: 'commonjs'
     },
     module: {
       loaders: [
