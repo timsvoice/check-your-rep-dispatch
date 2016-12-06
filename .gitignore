@@ -42,6 +42,3 @@ jspm_packages
 .serverless/value-stack.zip
 
 .env
-
-config/env.js
-handler.js

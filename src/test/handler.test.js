@@ -1,6 +1,6 @@
 import chai from 'chai';
 import chaiAsPromised from 'chai-as-promised';
-import { mailer } from '../handler.js';
+import { mailer } from '../../handler.js';
 
 chai.use(chaiAsPromised);
 const assert = chai.assert;

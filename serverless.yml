@@ -43,7 +43,6 @@ provider:
 # you can add packaging information here
 package:
   exclude:
-    - node_modules/**
     - .git/**
     - client/**
     - src/**
@@ -80,5 +79,11 @@ functions:
 #       Description: "Description for the output"
 #       Value: "Some output value"
 
+custom:
+  writeEnvVars:
+    MAILGUN_API_KEY: ${env:MAILGUN_API_KEY}
+    MAILGUN_CHECKYOURREP_DOMAIN: ${env:MAILGUN_CHECKYOURREP_DOMAIN}
+
 plugins:
   - serverless-offline
+  - serverless-plugin-write-env-vars

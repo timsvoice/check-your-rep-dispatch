@@ -1,10 +1,9 @@
 'use strict';
 import Mailgun from 'mailgun-js';
-import { config } from './config/config.js'; config();
-import { keys } from '../config/env.js';
+import {} from 'dotenv/config';
 
-const MAILGUN_API_KEY = keys.MAILGUN_API_KEY;
-const domain = keys.MAILGUN_CHECKYOURREP_DOMAIN;
+const MAILGUN_API_KEY = process.env.MAILGUN_API_KEY;
+const domain = process.env.MAILGUN_CHECKYOURREP_DOMAIN;
 const mailgun = Mailgun({apiKey: MAILGUN_API_KEY, domain });
 
 module.exports.mailer = (event, context, callback) => {
